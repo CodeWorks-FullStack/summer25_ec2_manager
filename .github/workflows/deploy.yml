@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout student repo
+        uses: actions/checkout@v4
+
+      - name: Prepare .env_files
+        run: |
+          printf "%s" "${{ secrets.ENV_UPLOADER }}" > .env.uploader
+              
+      - name: Deploy with Infra
+        uses: codeworksacademy/infra@main
+        with:
+          host: ${{ secrets.HOST }}
+          ssh_key: ${{ secrets.SSH_KEY }}
+          ghcr_pat: ${{ secrets.GHCR_PAT }}
