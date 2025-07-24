@@ -6,3 +6,5 @@ services:
       - .env.uploader
     ports:
       - "8920:3000"
+    labels:
+        caddy.domain: uploader.gregslist.dev
