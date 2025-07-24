@@ -1,0 +1,8 @@
+services:
+  uploader:
+    container_name: uploader
+    image: ghcr.io/codeworks-fullstack/summer25_file_upload:latest
+    env_file:
+      - .env.uploader
+    ports:
+      - "8920:3000"
